@@ -6,7 +6,7 @@ namespace MarinosV2PrototypeShared.BaseModels;
 [JsonObject]
 public abstract class IdEntity : VersionEntity
 {
-    private Guid _id;
+    private Guid _id = Guid.NewGuid();
     public Guid Id
     {
         get => _id;

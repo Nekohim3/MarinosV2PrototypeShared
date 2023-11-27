@@ -7,14 +7,10 @@ namespace MarinosV2PrototypeShared.Utils;
 public class CustomContractResolver : DefaultContractResolver
 {
 
-    protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+    protected override IList<JsonProperty> CreateProperties(Type? type, MemberSerialization memberSerialization)
     {
-        IList<JsonProperty> properties    = base.CreateProperties(type, memberSerialization);
-        var                 propsToIgnore = typeof(TrackedEntity).GetProperties().Select(p => p.Name).ToList();
-
-        properties =
-            properties.Where(p => !propsToIgnore.Contains(p.PropertyName)).ToList();
-
-        return properties;
+        while (type != null && type.Assembly != GetType().Assembly)
+            type = type.BaseType;
+        return base.CreateProperties(type, memberSerialization).Where(_ => !typeof(TrackedEntity).GetProperties().Select(__ => __.Name).Contains(_.PropertyName)).ToList();
     }
 }
