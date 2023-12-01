@@ -20,12 +20,12 @@ public abstract class TreeEntity<T> : Entity where T : TreeEntity<T>
     public virtual T? Parent
     {
         get => _parent;
-        set => this.RaiseAndSetIfChanged(ref _parent, value);
+        protected set => this.RaiseAndSetIfChanged(ref _parent, value);
     }
 
-    protected ICollection<T> _childs;
+    protected ICollection<T>? _childs;
     [TrackInclude]
-    public virtual ICollection<T> Childs
+    public virtual ICollection<T>? Childs
     {
         get => _childs;
         protected set => this.RaiseAndSetIfChanged(ref _childs, value);
