@@ -8,7 +8,7 @@ namespace MarinosV2PrototypeShared.Models;
 [JsonObject]
 public class SmsPartition : TreeEntity<SmsPartition>
 {
-    private string _name = string.Empty;
+    protected string _name = string.Empty;
     [TrackInclude]
     public string Name
     {
@@ -16,7 +16,7 @@ public class SmsPartition : TreeEntity<SmsPartition>
         set => this.RaiseAndSetIfChanged(ref _name, value);
     }
 
-    private string _number = string.Empty;
+    protected string _number = string.Empty;
     [TrackInclude]
     public string Number
     {
@@ -24,7 +24,7 @@ public class SmsPartition : TreeEntity<SmsPartition>
         set => this.RaiseAndSetIfChanged(ref _number, value);
     }
 
-    private ICollection<SmsDocument>? _documents;
+    protected ICollection<SmsDocument>? _documents;
     [TrackInclude]
     public virtual ICollection<SmsDocument>? Documents
     {

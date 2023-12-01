@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MarinosV2PrototypeShared.Utils.Attributes;
+using Newtonsoft.Json;
 using ReactiveUI;
 
 namespace MarinosV2PrototypeShared.BaseModels;
@@ -6,21 +7,24 @@ namespace MarinosV2PrototypeShared.BaseModels;
 [JsonObject]
 public abstract class TreeEntity<T> : Entity where T : TreeEntity<T>
 {
-    private Guid? _idParent;
+    protected Guid? _idParent;
+    [TrackInclude]
     public Guid? IdParent
     {
         get => _idParent;
         set => this.RaiseAndSetIfChanged(ref _idParent, value);
     }
 
-    private T? _parent;
+    protected T? _parent;
+    [TrackInclude]
     public virtual T? Parent
     {
         get => _parent;
         set => this.RaiseAndSetIfChanged(ref _parent, value);
     }
 
-    private ICollection<T> _childs;
+    protected ICollection<T> _childs;
+    [TrackInclude]
     public virtual ICollection<T> Childs
     {
         get => _childs;

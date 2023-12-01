@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using DynamicData;
+using MarinosV2PrototypeShared.BaseModels;
 
 namespace MarinosV2PrototypeShared.Utils
 {

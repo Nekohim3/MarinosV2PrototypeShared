@@ -1,4 +1,5 @@
-﻿using MarinosV2PrototypeShared.BaseModels;
+﻿using System.Collections;
+using MarinosV2PrototypeShared.BaseModels;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -75,8 +76,13 @@ public static class TManager
         return MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(objList)));
     }
 
+    //public static List<PropertyInfo> GetProperties(this object source) => source.GetType().GetProperties()
+    //                                                                            .Where(p => p.CanWrite && ((!p.PropertyType.IsClass && !typeof(System.Collections.IEnumerable).IsAssignableFrom(p.PropertyType)) || p.PropertyType == typeof(string))).ToList();
+
+    public static List<PropertyInfo> GetPropertiesCollections(this object source) => source.GetType().GetProperties()
+                                                                                           .Where(p => p.CanWrite && typeof(IEnumerable).IsAssignableFrom(p.PropertyType) && p.PropertyType != typeof(string)).ToList();
     public static List<PropertyInfo> GetProperties(this object source) => source.GetType().GetProperties()
-                                                                                .Where(p => p.CanWrite && ((!p.PropertyType.IsClass && !typeof(System.Collections.IEnumerable).IsAssignableFrom(p.PropertyType)) || p.PropertyType == typeof(string))).ToList();
+                                                                                           .Where(p => (p.CanWrite && !typeof(IEnumerable).IsAssignableFrom(p.PropertyType)) || p.PropertyType == typeof(string)).ToList();
 
     private static bool IsEqual(object? val1, object? val2)
     {
