@@ -29,6 +29,11 @@ public class SmsPartition : TreeEntity<SmsPartition>
     public virtual ICollection<SmsDocument>? Documents
     {
         get => _documents;
-        protected set => this.RaiseAndSetIfChanged(ref _documents, value);
+        set => this.RaiseAndSetIfChanged(ref _documents, value);
+    }
+
+    public SmsPartition()
+    {
+        
     }
 }

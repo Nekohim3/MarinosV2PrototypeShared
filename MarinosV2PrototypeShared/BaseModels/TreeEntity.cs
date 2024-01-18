@@ -20,7 +20,7 @@ public abstract class TreeEntity<T> : Entity where T : TreeEntity<T>
     public virtual T? Parent
     {
         get => _parent;
-        protected set => this.RaiseAndSetIfChanged(ref _parent, value);
+        set => this.RaiseAndSetIfChanged(ref _parent, value);
     }
 
     protected ICollection<T>? _childs;
@@ -28,7 +28,7 @@ public abstract class TreeEntity<T> : Entity where T : TreeEntity<T>
     public virtual ICollection<T>? Childs
     {
         get => _childs;
-        protected set => this.RaiseAndSetIfChanged(ref _childs, value);
+        set => this.RaiseAndSetIfChanged(ref _childs, value);
     }
 
     public virtual void AddChild(T child)

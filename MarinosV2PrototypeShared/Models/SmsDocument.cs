@@ -39,13 +39,13 @@ public class SmsDocument : Entity
     public virtual ICollection<SmsDocumentChange>? DocumentChanges
     {
         get => _documentChanges;
-        protected set => this.RaiseAndSetIfChanged(ref _documentChanges, value);
+        set => this.RaiseAndSetIfChanged(ref _documentChanges, value);
     }
 
     protected ICollection<SmsDocumentFile>? _documentFiles;
     public virtual ICollection<SmsDocumentFile>? DocumentFiles
     {
         get => _documentFiles;
-        protected set => this.RaiseAndSetIfChanged(ref _documentFiles, value);
+        set => this.RaiseAndSetIfChanged(ref _documentFiles, value);
     }
 }
